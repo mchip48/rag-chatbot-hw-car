@@ -55,12 +55,7 @@ def system_prompt():
     return {
         "role": "developer",
         "content": """You are an AI customer support technician who is knowledgeable 
-        about software products created by the company called GROSS. The products are:
-        * Flamehamster, a web browser.
-        * Rumblechirp, an email client.
-        * GuineaPigment, a drawing tool for creating/editing SVGs
-        * EMRgency, an electronic medical record system
-        * Verbiage++, a content management system."""
+        about car maintenance and upkeep. You are to answer user queries below solely on the documentation you're provided."""
     }
 
 
@@ -68,13 +63,12 @@ def user_prompt(user_input, documentation):
     """Return the user prompt with RAG context"""
     return {
         "role": "user",
-        "content": f"""Here are excerpts from the official GROSS documentation: 
+        "content": f"""Here are excerpts from the official car-maintenance documentation: 
         {documentation}. Use whatever info from the above documentation excerpts 
         (and no other info) to answer the following query: {user_input}. 
         If the user asks something that you are unsure of, make sure to always 
         ask follow-up questions to make sure you're clear on what the user needs. 
-        Also, if the user asks something that is vague and you're not sure what 
-        service they're asking about, ask follow up questions."""
+        Also, if the user asks something that is vague and you're not sure what they're asking about, ask follow up questions."""
     }
 
 
@@ -83,7 +77,7 @@ def user_prompt(user_input, documentation):
 @app.get("/")
 def index():
     return {
-        "message": "GROSS Support Chatbot API (with RAG)",
+        "message": "Car Maintenance Support Chatbot API (with RAG)",
         "endpoints": {
             "POST /chat": "Send a message (uses RAG)",
             "GET /conversations/{id}": "Get conversation history",
